@@ -5,9 +5,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  dockerRegistryServiceConnection: 'your-acr-service-connection'
+  dockerRegistryServiceConnection: 'devops2register'
   imageRepository: 'saif-html-app'
-  containerRegistry: 'youracr.azurecr.io'
+  containerRegistry: 'devops2register.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
@@ -41,7 +41,7 @@ stages:
       displayName: Deploy to Kubernetes
       inputs:
         action: 'deploy'
-        kubernetesServiceConnection: 'your-aks-service-connection'
+        kubernetesServiceConnection: 'myAKSCluster2-default'
         namespace: 'default'
         manifests: |
           $(Pipeline.Workspace)/manifests/deployment.yaml
